@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,20 @@ public class ThirdPersonMovement : MonoBehaviour
     public float turnSmoothTime = 0.1f;
 
     float turnSmoothVelocity;
+
+    private void Start()
+    {
+        Cursor. lockState = CursorLockMode. Locked;
+        Cursor. visible = false;
+
+    }
+
     void Update()
     {
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
-
-        Vector3 direction = new Vector3(horizontal, 0, vertical).normalized;
+        float rise = Input.GetAxisRaw("Jump");
+        Vector3 direction = new Vector3(horizontal, rise, vertical).normalized;
 
         if (direction.magnitude >= 0.1f)
         {
