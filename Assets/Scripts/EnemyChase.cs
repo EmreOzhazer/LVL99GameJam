@@ -10,6 +10,7 @@ public class EnemyChase : MonoBehaviour
     public NavMeshAgent enemyAgent;
     
     public Transform playerToChase;
+    public Transform enemyPositiontostop;
 
     private Animator animator;
 
@@ -65,7 +66,7 @@ public class EnemyChase : MonoBehaviour
     {
         isChasing = true;
         animator.SetBool("isRunning",true);
-        animator.SetBool("isWalking",false);
+       
     }
 
     private void OnTriggerExit(Collider other)
@@ -76,13 +77,16 @@ public class EnemyChase : MonoBehaviour
        
         IEnumerator backToPatrol()
         {
-            
-            
+            animator.SetBool("isRunning",false);
+            animator.SetBool("isWalking",false);
             yield return new WaitForSeconds(2);
             UpdateDestionation();
+            animator.SetBool("isWalking",true);
+            enemyPositiontostop.position = enemyPositiontostop.position;
+            Debug.Log("qqq");
            
         }
-        //animator.SetBool("isMoving",false);
+        
     }
     
 }

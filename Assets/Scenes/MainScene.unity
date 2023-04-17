@@ -373,6 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAgent: {fileID: 116809811}
   playerToChase: {fileID: 1267015328}
+  enemyPositiontostop: {fileID: 0}
   waypoints: []
 --- !u!1 &263799329
 GameObject:
@@ -1954,6 +1955,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyAgent: {fileID: 1400894103}
   playerToChase: {fileID: 1267015328}
+  enemyPositiontostop: {fileID: 1400894101}
   waypoints:
   - {fileID: 439598305}
   - {fileID: 795592589}
