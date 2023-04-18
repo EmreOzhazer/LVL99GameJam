@@ -10,8 +10,9 @@ public class EnemyChase : MonoBehaviour
     public NavMeshAgent enemyAgent;
     
     public Transform playerToChase;
-    public Transform enemyPositiontostop;
-
+    
+    [SerializeField] private ParticleSystem sprayParticle;
+   
     private Animator animator;
 
     public Transform[] waypoints;
@@ -25,6 +26,7 @@ public class EnemyChase : MonoBehaviour
         animator = GetComponent<Animator>();
         UpdateDestionation();
         animator.SetBool("isWalking",true);
+        sprayParticle.Stop();
 
     }
 
@@ -66,8 +68,9 @@ public class EnemyChase : MonoBehaviour
     {
         isChasing = true;
         animator.SetBool("isRunning",true);
-        
+        sprayParticle.Play();
 
+        //transform.position = Vector3.Lerp(transform.position, enemyVector, Time.deltaTime * 0.001f); //
     }
 
     private void OnTriggerExit(Collider other)
@@ -75,6 +78,9 @@ public class EnemyChase : MonoBehaviour
         isChasing = false;
         //animator.SetBool("isRunning",false);
        StartCoroutine(backToPatrol());
+       sprayParticle.Stop();
+       
+       
        
         IEnumerator backToPatrol()
         {
@@ -84,10 +90,9 @@ public class EnemyChase : MonoBehaviour
             yield return new WaitForSeconds(2);
             UpdateDestionation();
             animator.SetBool("isWalking",true);
-            enemyPositiontostop.position = enemyPositiontostop.position;
+            
             enemyAgent.speed = 3;
-            Debug.Log("qqq");
-           
+
         }
         
     }
