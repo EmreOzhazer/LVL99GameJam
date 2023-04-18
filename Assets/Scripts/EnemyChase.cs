@@ -66,7 +66,8 @@ public class EnemyChase : MonoBehaviour
     {
         isChasing = true;
         animator.SetBool("isRunning",true);
-       
+        
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -79,10 +80,12 @@ public class EnemyChase : MonoBehaviour
         {
             animator.SetBool("isRunning",false);
             animator.SetBool("isWalking",false);
+            enemyAgent.speed = 0;
             yield return new WaitForSeconds(2);
             UpdateDestionation();
             animator.SetBool("isWalking",true);
             enemyPositiontostop.position = enemyPositiontostop.position;
+            enemyAgent.speed = 3;
             Debug.Log("qqq");
            
         }

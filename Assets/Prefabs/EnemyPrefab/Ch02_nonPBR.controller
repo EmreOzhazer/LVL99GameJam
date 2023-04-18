@@ -144,7 +144,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 'walktostop '
+  m_Name: idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -158,7 +158,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: c77ffca0fe93f304ca57b2ff44ff4b1f,
+  m_Motion: {fileID: -203655887218126122, guid: b2a4fb1ed7a6a1a48906abc30003dca9,
     type: 3}
   m_Tag: 
   m_SpeedParameter: 
