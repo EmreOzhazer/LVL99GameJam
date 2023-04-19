@@ -7,8 +7,13 @@ public class BeeCondition : MonoBehaviour
 {
     public float breath;
     private bool isinhale;
+    public bool isinGas;
     
-    [SerializeField] private float maxbreath = 100;
+    public float fillSpeed = 0.1f;
+    public Color startColor = Color.blue;
+    public Color endColor = Color.red;
+    
+    [SerializeField] private float maxbreath = 1;
     
     public float beeHealth;
     [SerializeField] private float maxhealth = 100;
@@ -28,28 +33,39 @@ public class BeeCondition : MonoBehaviour
     {
         isinhale = _isinhale;
     }
-    
+
+    IEnumerator DurationHoldbreath()
+    {
+        
+        yield return new WaitForSeconds(3);
+        
+    }
     void Update()
     {
         _BarConditions.UpdateHealthBar(maxhealth,beeHealth);
         _BarConditions.UpdateBreathBar(maxbreath,breath);
-        
-        if (isinhale == true) breath+=0.3f;
+
+        if (isinhale == true && isinGas == false)
+        {
+            breath += 0.3f*Time.deltaTime;
+            
+            //breath += fillSpeed * Time.deltaTime;
+            //breath = Mathf.Clamp01(breath);
+            breath = Mathf.Clamp(breath,0f,100f);
+            _BarConditions.breathbarSprite.fillAmount = breath;
+           
+            _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor,breath);
+        }
         else
         {
             breath -= 0.1f;
+            //_BarConditions.breathbarSprite.color = Color.Lerp(endColor, startColor,breath*Time.deltaTime*20f);
         }
+
+        if (breath <= 0 ) breath = 0;
+
+        if (breath >= 100 ) breath = 100;
         
-        
-        if (breath <= 0 )
-        {
-            breath = 0;
-        }
-        
-        if (breath >= 100 )
-        {
-            breath = 100;
-        }
         
         if(beeHealth <= 0f)
         {
