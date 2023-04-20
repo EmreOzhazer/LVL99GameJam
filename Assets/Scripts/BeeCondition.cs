@@ -43,23 +43,24 @@ public class BeeCondition : MonoBehaviour
     void Update()
     {
         _BarConditions.UpdateHealthBar(maxhealth,beeHealth);
-        _BarConditions.UpdateBreathBar(maxbreath,breath);
+        
 
         if (isinhale == true && isinGas == false)
         {
-            breath += 0.3f*Time.deltaTime;
-            
-            //breath += fillSpeed * Time.deltaTime;
-            //breath = Mathf.Clamp01(breath);
-            breath = Mathf.Clamp(breath,0f,100f);
-            _BarConditions.breathbarSprite.fillAmount = breath;
-           
-            _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor,breath);
+            breath += 10f*Time.deltaTime;
+            breath = Mathf.Clamp(breath,0f,maxbreath);
+            float fillAmount = breath / 100f;
+            _BarConditions.UpdateBreathBar(maxbreath,breath);
+            _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor,fillAmount * fillAmount);
         }
         else
         {
-            breath -= 0.1f;
-            //_BarConditions.breathbarSprite.color = Color.Lerp(endColor, startColor,breath*Time.deltaTime*20f);
+            breath -= 10f * Time.deltaTime;
+            breath = Mathf.Clamp(breath, 0f, maxbreath);
+            float fillAmount = breath / 100f;
+            _BarConditions.breathbarSprite.fillAmount = fillAmount;
+            _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor, fillAmount);
+           
         }
 
         if (breath <= 0 ) breath = 0;
