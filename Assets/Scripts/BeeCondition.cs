@@ -2,18 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using DG.Tweening;
+
 
 public class BeeCondition : MonoBehaviour
 {
     public float breath;
     private bool isinhale;
     public bool isinGas;
-    public GameObject button;
-    public float fillSpeed = 0.1f;
+    public GameObject button;//3 kere nefes tutabilsin 
+
+    public TextMeshProUGUI foodText;
+    private int foodAmount;
+   
     public Color startColor = Color.blue;
     public Color endColor = Color.red;
 
@@ -38,8 +42,16 @@ public class BeeCondition : MonoBehaviour
     }
     //bar 0 dan başlar ve mouse basınca hızlıca yükselir hüüp diye ses çıkar
     //100e ulaştığı zaman -=1 ile azaltırsın nefes sıfır olduğunda hala gaz geliyorsa can azalır
-    
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Food"))
+        {
+            foodAmount++;
+            foodText.text = foodAmount+"/5";
+            Destroy(other.gameObject);
+        }
+    }
+
     public void isInhale(bool _isinhale)
     {
         isinhale = _isinhale;
