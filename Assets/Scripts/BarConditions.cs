@@ -8,9 +8,8 @@ public class BarConditions : MonoBehaviour
 {
     // [SerializeField] private BeeCondition _beeCondition;
     [SerializeField] public Image breathbarSprite;
-    [SerializeField] private Image healtbarSprite;
-    
-    
+    [SerializeField] public Image healtbarSprite;
+
     public void UpdateHealthBar(float maxHealth ,float currentHealth)
     {
         healtbarSprite.fillAmount = currentHealth / maxHealth;
