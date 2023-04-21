@@ -75,6 +75,7 @@ public class EnemyChase : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        
         isChasing = false;
         //animator.SetBool("isRunning",false);
        StartCoroutine(backToPatrol());

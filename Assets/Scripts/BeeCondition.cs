@@ -71,6 +71,7 @@ public class BeeCondition : MonoBehaviour
         breathLeftAmount[activeImageIndex].enabled = false;
         activeImageIndex++;
         breathLeft-=1;
+        
     }
     
     public void ClickBreath()
@@ -134,9 +135,9 @@ public class BeeCondition : MonoBehaviour
         
         if(beeHealth <= 0f)
         {
+            //Time.timeScale = 1;
             gameOverPanel.SetActive(true);
-            
-            Time.timeScale = 0;
+            beeHealth = 0.01f;
             
         }
     }
