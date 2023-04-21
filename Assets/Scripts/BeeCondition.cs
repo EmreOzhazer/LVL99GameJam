@@ -14,6 +14,8 @@ public class BeeCondition : MonoBehaviour
     private bool isinhale;
     public bool isinGas;
     public GameObject button;//3 kere nefes tutabilsin 
+    private float fillAmount;
+    public int breathLeft;
 
     public TextMeshProUGUI foodText;
     private int foodAmount;
@@ -56,33 +58,52 @@ public class BeeCondition : MonoBehaviour
     {
         isinhale = _isinhale;
     }
-//eğer 3 saniye 100de nefes tutarsan buton deactive kalır.
-    IEnumerator DurationHoldbreath()
+
+    public void BreathLeft()
     {
-        button.SetActive(false);
-        Debug.Log("1");
-        yield return new WaitForSeconds(3);
-        button.SetActive(true);
-        Debug.Log("2");
+        breathLeft-=1;
     }
+    public void ClickBreath()
+    {
+        isinhale = true;
+        
+        StartCoroutine(DurationHoldbreath());
+        
+        IEnumerator DurationHoldbreath()
+        {
+            if (!isinGas)
+            {
+                
+                breath += 80f*Time.deltaTime;
+                breath = Mathf.Clamp(breath,0f,maxbreath);
+                fillAmount = breath / 100f;
+                _BarConditions.UpdateBreathBar(maxbreath,breath);
+                _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor,fillAmount * fillAmount);
+            }
+
+            yield return new WaitForSeconds(3);
+            
+        }
+        
+       
+    }
+//eğer 3 saniye 100de nefes tutarsan buton deactive kalır.
+//butona 1 kere basınca full yüklenir sonra yavaşca iner aşağı 3 hakkı var
+   
     void Update()
     {
         _BarConditions.UpdateHealthBar(maxhealth,beeHealth);
         
-
+    
         if (isinhale == true && isinGas == false)
         {
-            breath += 20f*Time.deltaTime;
-            breath = Mathf.Clamp(breath,0f,maxbreath);
-            float fillAmount = breath / 100f;
-            _BarConditions.UpdateBreathBar(maxbreath,breath);
-            _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor,fillAmount * fillAmount);
+            ClickBreath();
         }
         else
         {
-            breath -= 10f * Time.deltaTime;
+            breath -= 20f * Time.deltaTime;
             breath = Mathf.Clamp(breath, 0f, maxbreath);
-            float fillAmount = breath / 100f;
+            fillAmount = breath / 100f;
             _BarConditions.breathbarSprite.fillAmount = fillAmount;
             _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor, fillAmount);
             
@@ -90,10 +111,11 @@ public class BeeCondition : MonoBehaviour
         }
 
         if (breath <= 0 ) breath = 0;
-
+        if(breathLeft==0) button.gameObject.SetActive(false);
         if (breath >= 100)
         {
-            StartCoroutine(DurationHoldbreath());
+            isinhale = false;
+            //StartCoroutine(DurationHoldbreath());
             breath = 100;
         }
         
