@@ -140,11 +140,13 @@ public class BeeCondition : MonoBehaviour
         
         if(beeHealth <= 0f)
         {
-            isDead = true;
-            // Time.timeScale = 0;
-            // gameOverPanel.SetActive(true);
-            // startPanel.SetActive(false);
+           
+            //öldüğünde home button çalışmıyo
             
+            gameOverPanel.SetActive(true);
+            startPanel.SetActive(false);
+            
+            Time.timeScale = 0;
              
 
         }

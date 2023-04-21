@@ -21,11 +21,15 @@ public class Buttons : MonoBehaviour
     }
     public void BackHomeButton()
     {
-        _beeCondition.isDead = false;
-        Time.timeScale = 1;
-        Debug.Log("dsadsa");
-        _beeCondition.startPanel.SetActive(true);
-        _beeCondition.gameOverPanel.SetActive(false);
+       
+            //update yüzünden heralde
+            Time.timeScale = 1;
+            Debug.Log("dsadsa");
+            _beeCondition.startPanel.SetActive(true);
+            _beeCondition.gameOverPanel.SetActive(false);
+        
+        
+        
     }
     public void StartGame()
     {
