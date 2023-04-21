@@ -19,7 +19,7 @@ public class BeeCondition : MonoBehaviour
     public int breathLeft;
     public Image[] breathLeftAmount;
     private int activeImageIndex = 0;
-    public bool isDead;
+    
     public GameObject gameOverPanel;
     public GameObject startPanel;
     
@@ -45,12 +45,9 @@ public class BeeCondition : MonoBehaviour
     {
 
         Time.timeScale = 0;
-        startPanel.SetActive(true);
-        gameOverPanel.SetActive(false);
         damageFade.enabled = false;
         beeHealth = maxhealth;
-        
-       
+
     }
     //bar 0 dan başlar ve mouse basınca hızlıca yükselir hüüp diye ses çıkar
     //100e ulaştığı zaman -=1 ile azaltırsın nefes sıfır olduğunda hala gaz geliyorsa can azalır
@@ -71,11 +68,11 @@ public class BeeCondition : MonoBehaviour
 
     public void BreathLeft()
     {
-
         breathLeftAmount[activeImageIndex].enabled = false;
         activeImageIndex++;
         breathLeft-=1;
     }
+    
     public void ClickBreath()
     {
         isinhale = true;
@@ -95,10 +92,8 @@ public class BeeCondition : MonoBehaviour
             }
 
             yield return new WaitForSeconds(3);
-            
         }
         
-       
     }
 //eğer 3 saniye 100de nefes tutarsan buton deactive kalır.
 //butona 1 kere basınca full yüklenir sonra yavaşca iner aşağı 3 hakkı var
@@ -120,7 +115,6 @@ public class BeeCondition : MonoBehaviour
             _BarConditions.breathbarSprite.fillAmount = fillAmount;
             _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor, fillAmount);
             
-           
         }
 
         if (breath <= 0 ) breath = 0;
@@ -140,15 +134,10 @@ public class BeeCondition : MonoBehaviour
         
         if(beeHealth <= 0f)
         {
-           
-            //öldüğünde home button çalışmıyo
-            
             gameOverPanel.SetActive(true);
-            startPanel.SetActive(false);
             
             Time.timeScale = 0;
-             
-
+            
         }
     }
 }
