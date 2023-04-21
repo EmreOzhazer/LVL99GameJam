@@ -16,6 +16,8 @@ public class BeeCondition : MonoBehaviour
     public GameObject button;//3 kere nefes tutabilsin 
     private float fillAmount;
     public int breathLeft;
+    public Image[] breathLeftAmount;
+    private int activeImageIndex = 0;
 
     public TextMeshProUGUI foodText;
     private int foodAmount;
@@ -61,6 +63,9 @@ public class BeeCondition : MonoBehaviour
 
     public void BreathLeft()
     {
+
+        breathLeftAmount[activeImageIndex].enabled = false;
+        activeImageIndex++;
         breathLeft-=1;
     }
     public void ClickBreath()

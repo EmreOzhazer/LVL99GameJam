@@ -9917,6 +9917,10 @@ MonoBehaviour:
   isinGas: 0
   button: {fileID: 858029765}
   breathLeft: 3
+  breathLeftAmount:
+  - {fileID: 1149159531}
+  - {fileID: 2071794233}
+  - {fileID: 1009995085}
   foodText: {fileID: 796786949}
   startColor: {r: 0, g: 0.1617651, b: 1, a: 1}
   endColor: {r: 1, g: 0, b: 0.16484308, a: 1}
