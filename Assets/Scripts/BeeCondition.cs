@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,7 +19,10 @@ public class BeeCondition : MonoBehaviour
     public int breathLeft;
     public Image[] breathLeftAmount;
     private int activeImageIndex = 0;
-
+    public bool isDead;
+    public GameObject gameOverPanel;
+    public GameObject startPanel;
+    
     public TextMeshProUGUI foodText;
     private int foodAmount;
    
@@ -39,6 +43,10 @@ public class BeeCondition : MonoBehaviour
    
     void Start()
     {
+
+        Time.timeScale = 0;
+        startPanel.SetActive(true);
+        gameOverPanel.SetActive(false);
         damageFade.enabled = false;
         beeHealth = maxhealth;
         
@@ -132,7 +140,13 @@ public class BeeCondition : MonoBehaviour
         
         if(beeHealth <= 0f)
         {
-            SceneManager.LoadScene(0);
+            isDead = true;
+            // Time.timeScale = 0;
+            // gameOverPanel.SetActive(true);
+            // startPanel.SetActive(false);
+            
+             
+
         }
     }
 }
