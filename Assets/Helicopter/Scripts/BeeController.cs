@@ -104,11 +104,11 @@ public class BeeController : MonoBehaviour
             {
                 case PressedKeyCode.SpeedUpPressed:
 
-                    EngineForce += 0.1f;
+                    EngineForce += 0.03f;
                     break;
                 case PressedKeyCode.SpeedDownPressed:
 
-                    EngineForce -= 0.2f;
+                    EngineForce -= 0.1f;
                     if (EngineForce < 0) EngineForce = 0;
                     break;
 

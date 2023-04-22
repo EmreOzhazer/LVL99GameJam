@@ -88,7 +88,7 @@ public class BeeCondition : MonoBehaviour
         {
             if (!isinGas)
             {
-                Debug.Log("ewqewq");
+                
                 breath += 80f*Time.deltaTime;
                 breath = Mathf.Clamp(breath,0f,maxbreath);
                 fillAmount = breath / 100f;
