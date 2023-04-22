@@ -96,7 +96,7 @@ public class EnemyChase : MonoBehaviour
             UpdateDestionation();
             animator.SetBool("isWalking",true);
             
-            enemyAgent.speed = 3;
+            enemyAgent.speed = 1.5f;
 
         }
         
