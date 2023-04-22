@@ -8,7 +8,7 @@ using UnityEngine.AI;
 public class EnemyChase : MonoBehaviour
 {
     public NavMeshAgent enemyAgent;
-    
+    [SerializeField] private BeeCondition _beeCondition;
     public Transform playerToChase;
     [SerializeField] private AudioSource spraySound;
     [SerializeField] private ParticleSystem sprayParticle;
@@ -40,7 +40,7 @@ public class EnemyChase : MonoBehaviour
             enemyAgent.SetDestination(playerToChase.transform.position);
         }
 
-        if (Vector3.Distance(transform.position, target) < 1)// less than 1 metre close 
+        if (Vector3.Distance(transform.position, target) < 1)
         {
            
             IterateWaypointIndex();
@@ -66,10 +66,14 @@ public class EnemyChase : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        isChasing = true;
-        animator.SetBool("isRunning",true);
-        sprayParticle.Play();
-       // spraySound.Play();
+        if (other.CompareTag("Player") && _beeCondition.isDead==false)
+        {
+            isChasing = true;
+            animator.SetBool("isRunning",true);
+            sprayParticle.Play();
+            spraySound.Play();
+        }
+        
         //transform.position = Vector3.Lerp(transform.position, enemyVector, Time.deltaTime * 0.001f); //
     }
 
@@ -80,7 +84,7 @@ public class EnemyChase : MonoBehaviour
         //animator.SetBool("isRunning",false);
        StartCoroutine(backToPatrol());
        sprayParticle.Stop();
-      // spraySound.Stop();
+       spraySound.Stop();
        
        
         IEnumerator backToPatrol()

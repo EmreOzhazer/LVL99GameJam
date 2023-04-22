@@ -10,9 +10,10 @@ public class SprayController : MonoBehaviour
     
     private void OnTriggerStay(Collider other)
     {
-        _beeCondition.isinGas = true;
         if (other.CompareTag("Player") && _beeCondition.breath <= 1f )
         {
+            _beeCondition.isinGas = true;
+
             Debug.Log("damageTaken");
             _beeCondition.beeHealth -= 1;
             _beeCondition.breath -= 1;

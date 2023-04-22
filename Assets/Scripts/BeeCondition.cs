@@ -11,9 +11,11 @@ using UnityEngine.UI;
 
 public class BeeCondition : MonoBehaviour
 {
-    
+    [SerializeField] private AudioSource collectSound;
+    [SerializeField] private AudioSource failSound;
     public float breath;
     private bool isinhale;
+    public bool isDead;
     public bool isinGas;
     public GameObject button;//3 kere nefes tutabilsin 
     private float fillAmount;
@@ -56,6 +58,7 @@ public class BeeCondition : MonoBehaviour
     {
         if (other.CompareTag("Food"))
         {
+            collectSound.Play();
             foodAmount++;
             foodText.text = foodAmount+"/5";
             Destroy(other.gameObject);
@@ -85,7 +88,7 @@ public class BeeCondition : MonoBehaviour
         {
             if (!isinGas)
             {
-                
+                Debug.Log("ewqewq");
                 breath += 80f*Time.deltaTime;
                 breath = Mathf.Clamp(breath,0f,maxbreath);
                 fillAmount = breath / 100f;
@@ -94,6 +97,9 @@ public class BeeCondition : MonoBehaviour
             }
 
             yield return new WaitForSeconds(3);
+            
+            
+            
         }
         
     }
@@ -116,7 +122,7 @@ public class BeeCondition : MonoBehaviour
             fillAmount = breath / 100f;
             _BarConditions.breathbarSprite.fillAmount = fillAmount;
             _BarConditions.breathbarSprite.color = Color.Lerp(startColor, endColor, fillAmount);
-            
+           
         }
 
         if (breath <= 0 ) breath = 0;
@@ -136,10 +142,16 @@ public class BeeCondition : MonoBehaviour
         
         if(beeHealth <= 0f)
         {
+            isDead = true;
+        }
+        if (isDead)
+        {
             //Time.timeScale = 1;
             gameOverPanel.SetActive(true);
-            beeHealth = 0.01f;
             
+            beeHealth = 0.01f;
+            failSound.Play();
+            isDead = false;
         }
     }
 }
