@@ -10,7 +10,7 @@ public class EnemyChase : MonoBehaviour
     public NavMeshAgent enemyAgent;
     
     public Transform playerToChase;
-    
+    [SerializeField] private AudioSource spraySound;
     [SerializeField] private ParticleSystem sprayParticle;
    
     private Animator animator;
@@ -69,7 +69,7 @@ public class EnemyChase : MonoBehaviour
         isChasing = true;
         animator.SetBool("isRunning",true);
         sprayParticle.Play();
-
+       // spraySound.Play();
         //transform.position = Vector3.Lerp(transform.position, enemyVector, Time.deltaTime * 0.001f); //
     }
 
@@ -80,7 +80,7 @@ public class EnemyChase : MonoBehaviour
         //animator.SetBool("isRunning",false);
        StartCoroutine(backToPatrol());
        sprayParticle.Stop();
-       
+      // spraySound.Stop();
        
        
         IEnumerator backToPatrol()

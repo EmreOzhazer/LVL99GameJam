@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class Buttons : MonoBehaviour
 {
-
+    [SerializeField] private AudioSource beeflySound;
     [SerializeField] private BeeCondition _beeCondition;
     
     public void BackHomeButton()
@@ -19,6 +19,7 @@ public class Buttons : MonoBehaviour
     
     public void StartGame()
     {
+        beeflySound.Play();
         Time.timeScale = 1;
         _beeCondition.startPanel.transform.DOScale(Vector3.zero, .3f).OnComplete(() =>
             _beeCondition.startPanel.SetActive(false));

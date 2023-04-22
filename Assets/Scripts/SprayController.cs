@@ -6,6 +6,7 @@ using UnityEngine;
 public class SprayController : MonoBehaviour
 {
     [SerializeField] private BeeCondition _beeCondition;
+   
     
     private void OnTriggerStay(Collider other)
     {
@@ -15,13 +16,12 @@ public class SprayController : MonoBehaviour
             Debug.Log("damageTaken");
             _beeCondition.beeHealth -= 1;
             _beeCondition.breath -= 1;
-            
-
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         _beeCondition.isinGas = false;
+        //spraySound.Pause();
     }
 }

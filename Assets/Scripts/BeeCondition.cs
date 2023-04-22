@@ -11,6 +11,7 @@ using UnityEngine.UI;
 
 public class BeeCondition : MonoBehaviour
 {
+    
     public float breath;
     private bool isinhale;
     public bool isinGas;
@@ -43,7 +44,7 @@ public class BeeCondition : MonoBehaviour
    
     void Start()
     {
-
+        
         Time.timeScale = 0;
         damageFade.enabled = false;
         beeHealth = maxhealth;

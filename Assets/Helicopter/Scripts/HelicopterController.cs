@@ -8,7 +8,7 @@ public class HelicopterController : MonoBehaviour
     public Rigidbody HelicopterModel;
     public HeliRotorController MainRotorController;
     public HeliRotorController SubRotorController;
-
+    
     public float TurnForce = 3f;
     public float ForwardForce = 10f;
     public float ForwardTiltForce = 20f;
@@ -29,7 +29,7 @@ public class HelicopterController : MonoBehaviour
             HelicopterSound.pitch = Mathf.Clamp(value / 40, 0, 1.2f);
             // if (UIGameController.runtime.EngineForceView != null)
             //     UIGameController.runtime.EngineForceView.text = string.Format("Engine value [ {0} ] ", (int)value);
-
+            
             _engineForce = value;
         }
     }
@@ -68,6 +68,7 @@ public class HelicopterController : MonoBehaviour
         var upForce = 1 - Mathf.Clamp(HelicopterModel.transform.position.y / EffectiveHeight, 0, 1);
         upForce = Mathf.Lerp(0f, EngineForce, upForce) * HelicopterModel.mass;
         HelicopterModel.AddRelativeForce(Vector3.up * upForce);
+        
     }
 
     private void TiltProcess()
@@ -81,7 +82,7 @@ public class HelicopterController : MonoBehaviour
     {
         float tempY = 0;
         float tempX = 0;
-
+        
         // stable forward
         if (hMove.y > 0)
             tempY = - Time.fixedDeltaTime;
@@ -102,7 +103,7 @@ public class HelicopterController : MonoBehaviour
             switch (pressedKeyCode)
             {
                 case PressedKeyCode.SpeedUpPressed:
-
+                    
                     EngineForce += 0.1f;
                     break;
                 case PressedKeyCode.SpeedDownPressed:
