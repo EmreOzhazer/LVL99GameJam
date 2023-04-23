@@ -591,7 +591,6 @@ GameObject:
   - component: {fileID: 7353995244780274159}
   - component: {fileID: 7443390215473388299}
   - component: {fileID: 7358470946428074598}
-  - component: {fileID: 7358470946428074597}
   - component: {fileID: 7358470946428074599}
   m_Layer: 0
   m_Name: FantasyBee
@@ -653,19 +652,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!65 &7358470946428074597
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7358092658344680685}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7358470946428074599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -678,16 +664,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85f6c4d4ecfa7f4fb4ee81cffb376e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HelicopterSound: {fileID: 0}
   ControlPanel: {fileID: 0}
   HelicopterModel: {fileID: 7358470946428074598}
-  MainRotorController: {fileID: 0}
-  SubRotorController: {fileID: 0}
   TurnForce: 3
   ForwardForce: 10
   ForwardTiltForce: 20
   TurnTiltForce: 30
   EffectiveHeight: 100
+  updownForce: 0
   turnTiltForcePercent: 1.5
   turnForcePercent: 1.3
   IsOnGround: 1
