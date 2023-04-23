@@ -11,6 +11,7 @@ public class EnemyChase : MonoBehaviour
     [SerializeField] private BeeCondition _beeCondition;
     public Transform playerToChase;
     [SerializeField] private AudioSource spraySound;
+    [SerializeField] private AudioSource footstepSound;
     [SerializeField] private ParticleSystem sprayParticle;
    
     private Animator animator;
@@ -93,10 +94,11 @@ public class EnemyChase : MonoBehaviour
                 animator.SetBool("isRunning", false);
                 animator.SetBool("isWalking", false);
                 enemyAgent.speed = 0;
+                footstepSound.Stop();
                 yield return new WaitForSeconds(2);
                 UpdateDestionation();
                 animator.SetBool("isWalking", true);
-
+                footstepSound.Play();
                 enemyAgent.speed = .75f;
 
             }

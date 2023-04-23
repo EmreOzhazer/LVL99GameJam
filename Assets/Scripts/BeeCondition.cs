@@ -13,6 +13,8 @@ public class BeeCondition : MonoBehaviour
 {
     [SerializeField] private AudioSource collectSound;
     [SerializeField] private AudioSource failSound;
+    [SerializeField] private AudioSource winSound;
+    
     public float breath;
     private bool isinhale;
     public bool isDead;
@@ -25,6 +27,7 @@ public class BeeCondition : MonoBehaviour
     
     public GameObject gameOverPanel;
     public GameObject startPanel;
+    public GameObject winPanel;
     
     public TextMeshProUGUI foodText;
     private int foodAmount;
@@ -60,8 +63,14 @@ public class BeeCondition : MonoBehaviour
         {
             collectSound.Play();
             foodAmount++;
-            foodText.text = foodAmount+"/5";
+            foodText.text = foodAmount+"/4";
             Destroy(other.gameObject);
+            if (foodAmount == 4)
+            {
+                winSound.Play();
+                winPanel.SetActive(true);
+            
+            }
         }
     }
 
@@ -144,6 +153,8 @@ public class BeeCondition : MonoBehaviour
         {
             isDead = true;
         }
+
+        
         if (isDead)
         {
             //Time.timeScale = 1;
