@@ -80,12 +80,12 @@ public class BeeController : MonoBehaviour
 
     private void OnKeyPressed(PressedKeyCode[] obj)
     {
-        float tempY = 0.001f;
+        float tempY = 0f;
         float tempX = 0;
 
         // stable forward
         if (hMove.y < 0)
-            tempY = - Time.fixedDeltaTime*2f;
+            tempY = - Time.fixedDeltaTime;
         else
             if (hMove.y > 0)
                 tempY = Time.fixedDeltaTime;
@@ -115,12 +115,12 @@ public class BeeController : MonoBehaviour
                     case PressedKeyCode.ForwardPressed:
 
                     if (IsOnGround) break;
-                    tempY = Time.fixedDeltaTime;
+                    tempY = Time.fixedDeltaTime*10;
                     break;
                     case PressedKeyCode.BackPressed:
 
                     if (IsOnGround) break;
-                    tempY = -Time.fixedDeltaTime;
+                    tempY = -Time.fixedDeltaTime*10;
                     break;
                     case PressedKeyCode.LeftPressed:
 
