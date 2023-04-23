@@ -79,27 +79,29 @@ public class EnemyChase : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        
-        isChasing = false;
-        //animator.SetBool("isRunning",false);
-       StartCoroutine(backToPatrol());
-       sprayParticle.Stop();
-       spraySound.Stop();
-       
-       
-        IEnumerator backToPatrol()
+        if (other.CompareTag("Player") && _beeCondition.isDead == false)
         {
-            animator.SetBool("isRunning",false);
-            animator.SetBool("isWalking",false);
-            enemyAgent.speed = 0;
-            yield return new WaitForSeconds(2);
-            UpdateDestionation();
-            animator.SetBool("isWalking",true);
-            
-            enemyAgent.speed = 1.5f;
+            isChasing = false;
+            //animator.SetBool("isRunning",false);
+            StartCoroutine(backToPatrol());
+            sprayParticle.Stop();
+            spraySound.Stop();
+
+
+            IEnumerator backToPatrol()
+            {
+                animator.SetBool("isRunning", false);
+                animator.SetBool("isWalking", false);
+                enemyAgent.speed = 0;
+                yield return new WaitForSeconds(2);
+                UpdateDestionation();
+                animator.SetBool("isWalking", true);
+
+                enemyAgent.speed = 1.5f;
+
+            }
 
         }
-        
     }
-    
+
 }
