@@ -50,7 +50,7 @@ public class BeeCondition : MonoBehaviour
     void Start()
     {
         
-        Time.timeScale = 1;
+        Time.timeScale = 0;
         damageFade.enabled = false;
         beeHealth = maxhealth;
 

@@ -104,28 +104,24 @@ public class BeeController : MonoBehaviour
             {
                 case PressedKeyCode.SpeedUpPressed:
 
-                    EngineForce += 0.1f;
+                    EngineForce += 0.05f;
                     break;
                 case PressedKeyCode.SpeedDownPressed:
 
-                    EngineForce -= 0.2f;
-                    if (EngineForce < 0) EngineForce = 0;
+                    EngineForce -= 0.1f;
+                    if (EngineForce < 0) EngineForce = 0.01f;
                     break;
 
                     case PressedKeyCode.ForwardPressed:
 
                     if (IsOnGround) break;
-                    tempY = Time.fixedDeltaTime*10;
+                    ForwardForce = 4;
+                    tempY = Time.fixedDeltaTime;
                     break;
                     case PressedKeyCode.BackPressed:
 
                     if (IsOnGround) break;
-                    tempY = -Time.fixedDeltaTime*10;
-                    break;
-                    case PressedKeyCode.LeftPressed:
-
-                    //if (IsOnGround) break;
-                    tempX = -Time.fixedDeltaTime;
+                    tempY = -Time.fixedDeltaTime;
                     break;
                     case PressedKeyCode.RightPressed:
 
@@ -161,11 +157,11 @@ public class BeeController : MonoBehaviour
 
     private void OnCollisionEnter()
     {
-        IsOnGround = true;
+        //IsOnGround = true;
     }
 
     private void OnCollisionExit()
     {
-        IsOnGround = false;
+        //IsOnGround = false;
     }
 }
