@@ -67,7 +67,7 @@ public class BeeCondition : MonoBehaviour
             foodText.text = foodAmount+"/4";
             Destroy(other.gameObject);
             
-            beeHealth += 20;
+            //beeHealth += 20;
             
             if (foodAmount == 4)
             {
