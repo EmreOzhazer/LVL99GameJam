@@ -6575,7 +6575,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1373110012
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9122,7 +9122,7 @@ MonoBehaviour:
   SpeedUp: 32
   SpeedDown: 304
   Forward: 119
-  Back: 115
+  Back: 0
   Left: 113
   Right: 101
   TurnLeft: 97

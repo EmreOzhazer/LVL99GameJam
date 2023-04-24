@@ -100,7 +100,7 @@ public class BeeController : MonoBehaviour
                 tempX = Time.fixedDeltaTime;
         
         if(Input.GetKey(KeyCode.Space)) EngineForce += 0.08f;
-
+        
         if (Input.GetKey(KeyCode.LeftShift))
         {
             EngineForce -= 0.2f;
@@ -120,7 +120,7 @@ public class BeeController : MonoBehaviour
         
         if (!held && !down && up) ForwardForce = 0.5f;
         
-        if(Input.GetKey(KeyCode.S)) tempY = -Time.fixedDeltaTime;
+       // if(Input.GetKey(KeyCode.S)) tempY = -Time.fixedDeltaTime;
         
         foreach (var pressedKeyCode in obj)
         {
