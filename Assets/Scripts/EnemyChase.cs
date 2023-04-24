@@ -28,6 +28,7 @@ public class EnemyChase : MonoBehaviour
         UpdateDestionation();
         animator.SetBool("isWalking",true);
         sprayParticle.Stop();
+        footstepSound.Play();
 
     }
 
@@ -73,8 +74,15 @@ public class EnemyChase : MonoBehaviour
             animator.SetBool("isRunning",true);
             sprayParticle.Play();
             spraySound.Play();
+            footstepSound.Play();
         }
-        
+
+        if ( _beeCondition.isDead == true)
+        {
+            spraySound.Stop();
+            footstepSound.Stop();
+            isChasing = false;
+        }
         //transform.position = Vector3.Lerp(transform.position, enemyVector, Time.deltaTime * 0.001f); //
     }
 

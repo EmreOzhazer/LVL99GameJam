@@ -86,7 +86,15 @@ public class BeeCondition : MonoBehaviour
         breathLeft-=1;
         
     }
-    
+    IEnumerator onDie()
+    {
+        
+        
+        yield return new WaitForSeconds(3);
+            
+            
+            
+    }
     public void ClickBreath()
     {
         isinhale = true;

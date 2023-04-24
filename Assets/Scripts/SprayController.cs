@@ -17,6 +17,7 @@ public class SprayController : MonoBehaviour
             Debug.Log("damageTaken");
             _beeCondition.beeHealth -= 0.4f;
             _beeCondition.breath -= 1;
+            
         }
     }
 
