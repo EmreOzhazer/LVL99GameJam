@@ -15,7 +15,7 @@ public class SprayController : MonoBehaviour
             _beeCondition.isinGas = true;
 
             Debug.Log("damageTaken");
-            _beeCondition.beeHealth -= 0.4f;
+            _beeCondition.beeHealth -= 0.3f;
             _beeCondition.breath -= 1;
             
         }

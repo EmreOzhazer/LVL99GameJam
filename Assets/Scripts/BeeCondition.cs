@@ -14,6 +14,7 @@ public class BeeCondition : MonoBehaviour
     [SerializeField] private AudioSource collectSound;
     [SerializeField] private AudioSource failSound;
     [SerializeField] private AudioSource winSound;
+    [SerializeField] private AudioSource inhaleSound;
     
     public float breath;
     private bool isinhale;
@@ -65,6 +66,9 @@ public class BeeCondition : MonoBehaviour
             foodAmount++;
             foodText.text = foodAmount+"/4";
             Destroy(other.gameObject);
+            
+            beeHealth += 20;
+            
             if (foodAmount == 4)
             {
                 winSound.Play();
@@ -84,6 +88,7 @@ public class BeeCondition : MonoBehaviour
         breathLeftAmount[activeImageIndex].enabled = false;
         activeImageIndex++;
         breathLeft-=1;
+        inhaleSound.Play();
         
     }
     IEnumerator onDie()

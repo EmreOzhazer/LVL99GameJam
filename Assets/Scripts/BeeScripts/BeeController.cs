@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+using System;
+using System.Collections;
+using System.Collections.Generic;
 public class BeeController : MonoBehaviour
 {
     //public AudioSource HelicopterSound;
@@ -96,33 +98,55 @@ public class BeeController : MonoBehaviour
         else
             if (hMove.x < 0)
                 tempX = Time.fixedDeltaTime;
+        
+        if(Input.GetKey(KeyCode.Space)) EngineForce += 0.08f;
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            EngineForce -= 0.2f;
+            if (EngineForce < 0) EngineForce = 0.2f;
+        }
+
+        bool down = Input.GetKeyDown(KeyCode.W);
+        bool held = Input.GetKey(KeyCode.W);
+        bool up = Input.GetKeyUp(KeyCode.W);
 
 
+        if (held && down && !up)
+        {
+            tempY = Time.fixedDeltaTime;
+            ForwardForce = 4;
+        }
+        
+        if (!held && !down && up) ForwardForce = 0.5f;
+        
+        if(Input.GetKey(KeyCode.S)) tempY = -Time.fixedDeltaTime;
+        
         foreach (var pressedKeyCode in obj)
         {
             switch (pressedKeyCode)
             {
-                case PressedKeyCode.SpeedUpPressed:
+                // case PressedKeyCode.SpeedUpPressed:
+                //
+                //     EngineForce += 0.05f;
+                //     break;
+                // case PressedKeyCode.SpeedDownPressed:
+                //
+                //     EngineForce -= 0.1f;
+                //     if (EngineForce < 0) EngineForce = 0.01f;
+                //     break;
 
-                    EngineForce += 0.05f;
-                    break;
-                case PressedKeyCode.SpeedDownPressed:
-
-                    EngineForce -= 0.1f;
-                    if (EngineForce < 0) EngineForce = 0.01f;
-                    break;
-
-                    case PressedKeyCode.ForwardPressed:
-
-                    if (IsOnGround) break;
-                    ForwardForce = 4;
-                    tempY = Time.fixedDeltaTime;
-                    break;
-                    case PressedKeyCode.BackPressed:
-
-                    if (IsOnGround) break;
-                    tempY = -Time.fixedDeltaTime;
-                    break;
+                    // case PressedKeyCode.ForwardPressed:
+                    //
+                    // if (IsOnGround) break;
+                    // ForwardForce = 4;
+                    // tempY = Time.fixedDeltaTime;
+                    // break;
+                    // case PressedKeyCode.BackPressed:
+                    //
+                    // if (IsOnGround) break;
+                    // tempY = -Time.fixedDeltaTime;
+                    // break;
                     case PressedKeyCode.RightPressed:
 
                     //if (IsOnGround) break;
