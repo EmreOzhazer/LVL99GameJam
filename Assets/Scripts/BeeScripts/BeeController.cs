@@ -5,6 +5,13 @@ using System.Collections;
 using System.Collections.Generic;
 public class BeeController : MonoBehaviour
 {
+
+/*
+ *
+ * I made this game in a hurry so code is unorganized and may be hard to understand.
+ *
+ * 
+ */
     //public AudioSource HelicopterSound;
     public ControlPanel ControlPanel;
     public Rigidbody HelicopterModel;
